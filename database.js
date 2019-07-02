@@ -1,9 +1,9 @@
-var sqlite3 = require('sqlite3').verbose()
+var sqlite = require('sqlite3').verbose()
 var md5 = require('md5')
 
 const DBSOURCE = "db.sqlite"
 
-let db = new sqlite3.Database(DBSOURCE, (err) => {
+let db = new sqlite.Database(DBSOURCE, (err) => {
     if (err) {
       // Cannot open database
       console.error(err.message)
@@ -22,12 +22,9 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             )`,
         (err) => {
             if (err) {
-                // Table already created
+                console.error(err.message)
             }else{
-                // Table just created, creating some rows
-                //var insert = 'INSERT INTO user (type, symbol,shares,price,user_id,user_name, timestamp) VALUES (?,?,?,?,?,?,?)'
-               // db.run(insert, ["abuy","$",md5("admin123456")])
-                //db.run(insert, ["user","user@example.com",md5("user123456")])
+                console.log("created the db table") 
             }
         });  
     }
